@@ -1,0 +1,11 @@
+{
+  "submission_name": "sorting_test",
+  "total_protocols": 1,
+  "accuracy_at_1_percent": 0.0,
+  "recall_at_3_percent": 100.0,
+  "latency_avg_s": 10.911,
+  "latency_min_s": 10.911,
+  "latency_max_s": 10.911,
+  "latency_p50_s": 10.911,
+  "latency_p95_s": 10.911
+}

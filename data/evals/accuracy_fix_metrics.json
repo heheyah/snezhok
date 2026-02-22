@@ -1,0 +1,11 @@
+{
+  "submission_name": "accuracy_fix",
+  "total_protocols": 11,
+  "accuracy_at_1_percent": 0.0,
+  "recall_at_3_percent": 45.45,
+  "latency_avg_s": 31.669,
+  "latency_min_s": 20.969,
+  "latency_max_s": 41.067,
+  "latency_p50_s": 29.68,
+  "latency_p95_s": 42.115
+}

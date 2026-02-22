@@ -1,0 +1,11 @@
+{
+  "submission_name": "final_test",
+  "total_protocols": 6,
+  "accuracy_at_1_percent": 0.0,
+  "recall_at_3_percent": 33.33,
+  "latency_avg_s": 43.664,
+  "latency_min_s": 31.609,
+  "latency_max_s": 56.879,
+  "latency_p50_s": 46.679,
+  "latency_p95_s": 62.394
+}

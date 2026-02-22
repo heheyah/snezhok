@@ -1,0 +1,11 @@
+{
+  "submission_name": "redemption_run",
+  "total_protocols": 11,
+  "accuracy_at_1_percent": 9.09,
+  "recall_at_3_percent": 54.55,
+  "latency_avg_s": 44.338,
+  "latency_min_s": 25.419,
+  "latency_max_s": 59.726,
+  "latency_p50_s": 44.197,
+  "latency_p95_s": 60.33
+}

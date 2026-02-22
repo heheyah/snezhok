@@ -1,0 +1,11 @@
+{
+  "submission_name": "final_precision",
+  "total_protocols": 10,
+  "accuracy_at_1_percent": 10.0,
+  "recall_at_3_percent": 20.0,
+  "latency_avg_s": 45.274,
+  "latency_min_s": 12.247,
+  "latency_max_s": 59.37,
+  "latency_p50_s": 47.989,
+  "latency_p95_s": 59.546
+}

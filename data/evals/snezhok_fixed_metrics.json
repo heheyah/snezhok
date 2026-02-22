@@ -1,0 +1,11 @@
+{
+  "submission_name": "snezhok_fixed",
+  "total_protocols": 11,
+  "accuracy_at_1_percent": 0.0,
+  "recall_at_3_percent": 27.27,
+  "latency_avg_s": 38.133,
+  "latency_min_s": 15.25,
+  "latency_max_s": 48.708,
+  "latency_p50_s": 39.521,
+  "latency_p95_s": 49.418
+}

@@ -1,0 +1,11 @@
+{
+  "submission_name": "prompt_test",
+  "total_protocols": 6,
+  "accuracy_at_1_percent": 0.0,
+  "recall_at_3_percent": 0.0,
+  "latency_avg_s": 18.31,
+  "latency_min_s": 11.438,
+  "latency_max_s": 23.322,
+  "latency_p50_s": 18.934,
+  "latency_p95_s": 24.125
+}

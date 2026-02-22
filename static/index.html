@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qazcode 2026 | Medical Assistant</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #10b981;
+            --bg: #f1f5f9;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            /* Subtle CSS-only grid pattern for a "medical chart" look */
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text);
+        }
+
+        /* Pure CSS Medical Cross Icon */
+        .medical-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            position: relative;
+            margin: 40px auto 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.3);
+        }
+
+        .medical-icon::before, .medical-icon::after {
+            content: "";
+            position: absolute;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .medical-icon::before {
+            width: 30px;
+            height: 8px;
+        }
+
+        .medical-icon::after {
+            width: 8px;
+            height: 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin: 0 0 40px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 90%;
+        }
+
+        .input-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #f1f5f9;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8fafc;
+            resize: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Results Styling */
+        .diagnosis-card {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10s); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .icd-code {
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-align: center;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="medical-icon"></div>
+
+    <div class="container">
+        <header>
+            <h1>Diagnosis Assistant</h1>
+        </header>
+
+        <div class="input-card">
+            <label>Patient Clinical Findings</label>
+            <textarea id="symptoms" placeholder="Type or paste patient symptoms here..."></textarea>
+            <button id="submit-btn" onclick="getDiagnosis()">Start Analysis</button>
+        </div>
+
+        <div id="results-container"></div>
+    </div>
+
+    <footer>
+        <strong>LOCAL SYSTEM MODE</strong><br>
+        Clinical Tool for Healthcare Professionals.<br>
+        Always cross-reference with official medical protocols.
+    </footer>
+
+<script>
+    async function getDiagnosis() {
+        const symptomsText = document.getElementById('symptoms').value.trim();
+        if (!symptomsText) return;
+
+        const btn = document.getElementById('submit-btn');
+        const results = document.getElementById('results-container');
+
+        btn.disabled = true;
+        btn.innerText = "Analyzing...";
+        results.innerHTML = '';
+
+        try {
+            const response = await fetch('/diagnose', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ symptoms: symptomsText })
+            });
+            const data = await response.json();
+            
+            (data.diagnoses || []).forEach(diag => {
+                const div = document.createElement('div');
+                div.className = 'diagnosis-card';
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0">${diag.name}</h3>
+                        <span class="icd-code">${diag.icd10_code}</span>
+                    </div>
+                    <p style="margin:10px 0 0; color:#475569;">${diag.explanation}</p>
+                `;
+                results.appendChild(div);
+            });
+        } catch (e) {
+            results.innerHTML = '<p style="text-align:center; color:#ef4444;">Server offline. Please start your local backend.</p>';
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Start Analysis";
+        }
+    }
+</script>
+
+</body>
+</html>
